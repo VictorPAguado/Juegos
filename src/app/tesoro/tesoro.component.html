@@ -1,0 +1,27 @@
+<div class="tesoro">
+  <form>
+      <label>
+        Filas:
+        <input type="number" name="filas" [(ngModel)]="numFilas">
+      </label>
+      <br>
+      <label>
+        Columnas:
+        <input type="number" name="columnas" [(ngModel)]="numColumnas">
+      </label>
+      <br>
+      <button (click)="empezarJuego()">Empezar Juego</button>
+    </form>
+  <table>
+      <tr *ngFor="let fila of matrizImagenes; let i = index">
+        <td *ngFor="let imagen of fila; let j = index">
+          <img *ngIf="encontrado && fila === posicionTesoro.fila && j === posicionTesoro" src="../../assets/public/exercise-4/chest.png">
+          <img *ngIf="!encontrado && fila === posicionTesoro.fila && j === posicionTesoro" src="../../assets/public/exercise-4/skull.png">
+          <img *ngIf="imagen === 'vacio'" src="../../assets/public/exercise-4/x.png" (click)="clickCelda(i, j)">
+          <img *ngIf="imagen === 'error'" src="../../assets/public/exercise-4/skull.png">
+          <img *ngIf="imagen === 'tesoro'" src="../../assets/public/exercise-4/chest.png">
+        </td>
+      </tr>
+  </table>
+  <button (click)="resetearJuego()">Resetear Juego</button>
+</div>
